@@ -174,8 +174,8 @@ create table tb_usuario(
 	id_ciu int references tb_ciudad(id),
 	id_dis int references tb_distrito(id)
 );
-insert into tb_usuario values (null,'Henry','Galvez','henry@gmail.com','123',null,null,null,null,1,1,1,1,1,1);
-insert into tb_usuario values (null,'Angel','Marin','angel@gmail.com','123','993124712','70559001',null,null,1,1,1,1,1,1);
+insert into tb_usuario values (null,'Henry','Galvez','henry@gmail.com','$2a$10$YZqCv3npeTk2SMwrYbMeferx32tvvwvkuge..xc3d3l6N.Zrp8gha',null,null,null,null,1,1,1,1,1,1);
+insert into tb_usuario values (null,'Angel','Marin','angel@gmail.com','$2a$10$YZqCv3npeTk2SMwrYbMeferx32tvvwvkuge..xc3d3l6N.Zrp8gha','993124712','70559001',null,null,1,1,1,1,1,1);
 --
 create table tb_enlace(
 	id int auto_increment primary key,
