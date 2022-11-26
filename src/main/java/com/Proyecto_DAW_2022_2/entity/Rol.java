@@ -23,11 +23,11 @@ public class Rol {
 	@JsonIgnore
 	@OneToMany(mappedBy="rol")
 	private List<Usuario> listaUsuarios;
-	/*
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="rol")
 	private List<RolEnlace> listaRolEnlace;
-*/
+	
 	public Integer getId() {
 		return id;
 	}
@@ -59,7 +59,7 @@ public class Rol {
 	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
-/*
+
 	public List<RolEnlace> getListaRolEnlace() {
 		return listaRolEnlace;
 	}
@@ -67,5 +67,5 @@ public class Rol {
 	public void setListaRolEnlace(List<RolEnlace> listaRolEnlace) {
 		this.listaRolEnlace = listaRolEnlace;
 	}
-	*/
+	
 }

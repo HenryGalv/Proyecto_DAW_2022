@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class RolEnlacePK implements Serializable{
-/*	private int idRol;
+	private int idRol;
 	private int idEnlace;
 	@Override
 	public int hashCode() {
@@ -35,5 +35,5 @@ public class RolEnlacePK implements Serializable{
 	}
 	public void setIdEnlace(int idEnlace) {
 		this.idEnlace = idEnlace;
-	}*/
+	}
 }

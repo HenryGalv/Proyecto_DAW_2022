@@ -1,5 +1,5 @@
 package com.Proyecto_DAW_2022_2;
-/*
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,18 +19,22 @@ public class SecurityConfig {
 	
 	@Bean
 	public  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
+		/*http.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
 			.formLogin(form-> form.loginPage("/login")
-			.permitAll().defaultSuccessUrl("/Proyecto/lista"));
+			.permitAll().defaultSuccessUrl("/Producto/lista"));*/
+		http.csrf(csrf->csrf.disable())
+		.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
+		.formLogin(form-> form.loginPage("/login")
+		.permitAll().defaultSuccessUrl("/Productos/Lista"));
 		return http.build();
 	}
 	
+	/*
 	 @Bean
 	 public UserDetailsService userDetailsService(BCryptPasswordEncoder encoder) {
 		 InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		 manager.createUser(User.withUsername("henry").password(encoder.encode("123")).roles("USER").build());
 		 manager.createUser(User.withUsername("galvez").password(encoder.encode("123")).roles("ADMINISTRADOR").build());
 		 return manager;
-	 }
+	 }*/
 }
-*/

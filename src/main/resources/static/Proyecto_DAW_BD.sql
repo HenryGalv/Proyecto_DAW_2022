@@ -174,9 +174,7 @@ create table tb_usuario(
 	id_ciu int references tb_ciudad(id),
 	id_dis int references tb_distrito(id)
 );
---
 insert into tb_usuario values (null,'Henry','Galvez','henry@gmail.com','123',null,null,null,null,1,1,1,1,1,1);
---
 insert into tb_usuario values (null,'Angel','Marin','angel@gmail.com','123','993124712','70559001',null,null,1,1,1,1,1,1);
 --
 create table tb_enlace(
@@ -184,15 +182,17 @@ create table tb_enlace(
     descripcion varchar(50),
     ruta varchar(50)
 );
+insert into tb_enlace values (null,"Producto","/Productos/Lista");
 --
 create table tb_rol_enlace (
-  id_rol int not null,
-  id_enlace int not null,
-  PRIMARY KEY (`id_rol`,`id_enlace`),
-  KEY `fk25` (`id_enlace`),
-  CONSTRAINT `fk24` FOREIGN KEY (id_rol) REFERENCES tb_rol (id),
-  CONSTRAINT `fk25` FOREIGN KEY (id_enlace) REFERENCES tb_enlace (id)
+  idRol int not null,
+  idEnlace int not null,
+  PRIMARY KEY (`idRol`,`idEnlace`),
+  KEY `fk25` (`idEnlace`),
+  CONSTRAINT `fk24` FOREIGN KEY (idRol) REFERENCES tb_rol (id),
+  CONSTRAINT `fk25` FOREIGN KEY (idEnlace) REFERENCES tb_enlace (id)
 );
+insert into tb_rol_enlace values (1,1);
 --
 create table tb_cliente(
 	id int auto_increment primary key,

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,13 +69,14 @@ public class MantenimientoUsuarioController {
 						@RequestParam("direccion") String direccion,
 						RedirectAttributes redirect) {
 		try {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			Usuario bean = new Usuario();
 			bean.setId(id);
 			bean.setNombre(nombre);
 			bean.setApellido(apellido);
 			bean.setDni(dni);
 			bean.setCorreo(correo);
-			bean.setContrasenia(dni);
+			bean.setContrasenia(encoder.encode(dni));
 			bean.setCelular(celular);
 			if(!(fechaNac =="")) bean.setFechaNac(new SimpleDateFormat("yyyy-MM-dd").parse(fechaNac));
 			bean.setEstado(estado);

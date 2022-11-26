@@ -1,19 +1,25 @@
 package com.Proyecto_DAW_2022_2.services;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.Proyecto_DAW_2022_2.dao.UsuarioRepository;
 import com.Proyecto_DAW_2022_2.entity.Usuario;
 
 @Service
-public class UsuarioService {
-	
+public class UsuarioService implements UserDetailsService{	
 	@Autowired
-	private UsuarioRepository repo;
-	
+	private UsuarioRepository repo;	
 	public List<Usuario> listarUsuarios(){
 		return repo.findAll();
 	}
@@ -25,6 +31,15 @@ public class UsuarioService {
 	}
 	public Usuario buscar(Integer id) {
 		return repo.findById(id).orElse(null);
+	}
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDetails obj=null;
+		Usuario bean = repo.iniciarSesion(username);
+		Set<GrantedAuthority> rol = new HashSet<GrantedAuthority>();
+		rol.add(new SimpleGrantedAuthority(bean.getRol().getNombre()));
+		obj = new User(username, bean.getContrasenia(),rol);
+		return obj;
 	}	
 	
 }

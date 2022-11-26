@@ -5,17 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-/*
+
 @Entity
 @Table(name="tb_rol_enlace")
 public class RolEnlace {
 	@EmbeddedId
 	private RolEnlacePK pk;
 	@ManyToOne
-	@JoinColumn(name="id_rol")
+	@JoinColumn(name="idRol", insertable=false,updatable = false)
 	private Rol rol;
 	@ManyToOne
-	@JoinColumn(name="id_enlace")
+	@JoinColumn(name="idEnlace", insertable=false,updatable = false)
 	private Enlace enlace;
 	public RolEnlacePK getPk() {
 		return pk;
@@ -35,4 +35,4 @@ public class RolEnlace {
 	public void setEnlace(Enlace enlace) {
 		this.enlace = enlace;
 	}
-}*/
+}
