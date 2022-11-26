@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.Proyecto_DAW_2022_2.dao.UsuarioRepository;
+import com.Proyecto_DAW_2022_2.entity.Enlace;
 import com.Proyecto_DAW_2022_2.entity.Usuario;
 
 @Service
@@ -31,6 +32,12 @@ public class UsuarioService implements UserDetailsService{
 	}
 	public Usuario buscar(Integer id) {
 		return repo.findById(id).orElse(null);
+	}
+	public Usuario loginUsuario(String vLogin) {
+		return repo.iniciarSesion(vLogin);
+	}
+	public List<Enlace> enlacesDelUsuario(int rol){
+		return repo.traerEnlacesDelUsuario(rol);
 	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

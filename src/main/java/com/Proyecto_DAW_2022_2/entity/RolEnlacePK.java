@@ -7,11 +7,11 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class RolEnlacePK implements Serializable{
-	private int idRol;
-	private int idEnlace;
+	private int idrol;
+	private int idenlace;
 	@Override
 	public int hashCode() {
-		return Objects.hash(idEnlace, idRol);
+		return Objects.hash(idenlace, idrol);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -22,18 +22,18 @@ public class RolEnlacePK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		RolEnlacePK other = (RolEnlacePK) obj;
-		return idEnlace == other.idEnlace && idRol == other.idRol;
+		return idenlace == other.idenlace && idrol == other.idrol;
 	}
 	public int getIdRol() {
-		return idRol;
+		return idrol;
 	}
 	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+		this.idrol = idRol;
 	}
 	public int getIdEnlace() {
-		return idEnlace;
+		return idenlace;
 	}
-	public void setIdEnlace(int idEnlace) {
-		this.idEnlace = idEnlace;
+	public void setIdEnlace(int idenlace) {
+		this.idenlace = idenlace;
 	}
 }

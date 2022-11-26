@@ -183,16 +183,20 @@ create table tb_enlace(
     ruta varchar(50)
 );
 insert into tb_enlace values (null,"Producto","/Productos/Lista");
+insert into tb_enlace values (null,"Usuarios","/Usuarios/Lista");
+insert into tb_enlace values (null,"Categorias y Marcas","/CategoriasMarcas/Lista");
 --
 create table tb_rol_enlace (
-  idRol int not null,
-  idEnlace int not null,
-  PRIMARY KEY (`idRol`,`idEnlace`),
-  KEY `fk25` (`idEnlace`),
-  CONSTRAINT `fk24` FOREIGN KEY (idRol) REFERENCES tb_rol (id),
-  CONSTRAINT `fk25` FOREIGN KEY (idEnlace) REFERENCES tb_enlace (id)
+  idrol int not null,
+  idenlace int not null,
+  PRIMARY KEY (idrol,idenlace), KEY fk25 (idenlace),
+  CONSTRAINT fk24 FOREIGN KEY (idrol) REFERENCES tb_rol (id),
+  CONSTRAINT fk25 FOREIGN KEY (idenlace) REFERENCES tb_enlace (id)
 );
+-- drop table tb_rol_enlace;
 insert into tb_rol_enlace values (1,1);
+insert into tb_rol_enlace values (1,2);
+insert into tb_rol_enlace values (1,3);
 --
 create table tb_cliente(
 	id int auto_increment primary key,
@@ -302,5 +306,8 @@ insert into tb_detalle_pedido values(null,12,1500,10,1,1,1);
 ALTER TABLE tb_usuario
 modify correo varchar(255) unique;
 --
+
 use Proyecto_DAW_BD;
 select*from tb_usuario;
+/*******************************/
+drop database proyecto_daw_bd;

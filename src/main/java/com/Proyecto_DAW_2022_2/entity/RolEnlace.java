@@ -12,10 +12,10 @@ public class RolEnlace {
 	@EmbeddedId
 	private RolEnlacePK pk;
 	@ManyToOne
-	@JoinColumn(name="idRol", insertable=false,updatable = false)
-	private Rol rol;
+	@JoinColumn(name="idrol", insertable=false,updatable = false)
+	private Rol rol;	
 	@ManyToOne
-	@JoinColumn(name="idEnlace", insertable=false,updatable = false)
+	@JoinColumn(name="idenlace", insertable=false,updatable = false)
 	private Enlace enlace;
 	public RolEnlacePK getPk() {
 		return pk;

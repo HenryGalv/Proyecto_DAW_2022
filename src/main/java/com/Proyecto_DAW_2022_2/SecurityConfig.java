@@ -25,7 +25,7 @@ public class SecurityConfig {
 		http.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
 		.formLogin(form-> form.loginPage("/login")
-		.permitAll().defaultSuccessUrl("/Productos/Lista"));
+		.permitAll().defaultSuccessUrl("/Inicio"));
 		return http.build();
 	}
 	
