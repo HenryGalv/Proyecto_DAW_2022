@@ -22,11 +22,18 @@ public class SecurityConfig {
 		/*http.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
 			.formLogin(form-> form.loginPage("/login")
 			.permitAll().defaultSuccessUrl("/Producto/lista"));*/
-		http.csrf(csrf->csrf.disable())
-		.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
-		.formLogin(form-> form.loginPage("/login")
-		.permitAll().defaultSuccessUrl("/Inicio"));
+		http.csrf(csrf->csrf.disable())		
+		.authorizeHttpRequests((auth)-> 
+			auth.anyRequest()
+				.authenticated()
+			)
+		.formLogin(form-> 
+			form.loginPage("/login")
+				.permitAll()
+				.defaultSuccessUrl("/Inicio")
+			);			
 		return http.build();
+
 	}
 	
 	/*

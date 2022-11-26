@@ -19,7 +19,7 @@
 				<div class="offcanvas bg-dark offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
 					aria-labelledby="offcanvasDarkNavbarLabel">
 					<div class="offcanvas-header">
-						<form method="post">
+						<form th:action="@{/logout}" method="post">
 							<input type="submit" class="btn btn-danger" value="Cerrar Sesion"/>
 						</form>						
 						<h5 class="offcanvas-title text-white" id="offcanvasDarkNavbarLabel">"NOMBRE USUARIO"</h5>
