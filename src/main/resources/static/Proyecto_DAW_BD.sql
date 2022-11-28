@@ -310,4 +310,4 @@ modify correo varchar(255) unique;
 use Proyecto_DAW_BD;
 select*from tb_usuario;
 /*******************************/
-drop database proyecto_daw_bd;
+-- drop database proyecto_daw_bd;

@@ -5,14 +5,6 @@
 <title>Boleta</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-	<link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/resources/css/dataTables.bootstrap5.min.css}" rel="stylesheet">
-	<link th:href="@{/resources/datepicker/bootstrap-datepicker.css}" rel="stylesheet">
-	<link th:href="@{/resources/css/bootstrap-icons.css}" rel="stylesheet">
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.css}">
-	<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.min.css}">
-	<link th:href="@{/resources/css/estilos.css}" rel="stylesheet">
 <style type="text/css">
 	.card-header{
 		color:#fff;
@@ -39,7 +31,6 @@
 </style>
 </head>
 <body>
-	<div th:insert="fragments/NavMenu :: cabecera"></div>
 	<div class="container">
 		<div class="mt-4">
 		</div>	
@@ -83,8 +74,7 @@
 														<label><b>Buscar</b></label>					
 														<button type="button" class="form-control btn btn-primary" 
 															data-toggle="modal" data-target="#modalCliente">
-															Buscar</button>
-														
+															Buscar</button>														
 													</div>
 												</div>
 												<div class="col-md-6">	
@@ -100,10 +90,10 @@
 												            </tr>
 												        </thead>
 												        <tbody>
-																<tr th:each="row:${medicamentos}">
+																<tr th:each="row:${productos}">
 															      <td th:text="${row.codigo}"></td>
 															      <td th:text="${row.nombre}"></td>
-															      <td><a class="btn btn-primary btn-adicionar">A</a></td>
+															      <td><a class="btn btn-primary btn-success"><i class="bi bi-plus-circle-fill"></i></a></td>
 															    </tr>  
 																
 																
@@ -176,10 +166,7 @@
 												        </tbody>
 												    </table>
 											    </div>	
-										</div>
-								
-								
-								
+										</div>																						
 								</div>
 							</div>
 						</div>
