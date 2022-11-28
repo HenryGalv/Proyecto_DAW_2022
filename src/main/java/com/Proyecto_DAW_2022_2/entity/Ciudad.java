@@ -29,7 +29,18 @@ public class Ciudad {
 	@JsonIgnore
 	@OneToMany(mappedBy="ciudad")
 	private List<Distrito> listaDistritos;
+	@JsonIgnore
+	@OneToMany(mappedBy="ciudad")
+	private List<Cliente> listaClientes;
 	
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
