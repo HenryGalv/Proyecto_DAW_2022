@@ -27,6 +27,18 @@ public class Distrito {
 	@JsonIgnore
 	@OneToMany(mappedBy="distrito")
 	private List<Usuario> listaUsuarios;
+	@JsonIgnore
+	@OneToMany(mappedBy="distrito")
+	private List<Cliente> listaClientes;
+	
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
