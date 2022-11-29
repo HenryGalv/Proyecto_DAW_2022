@@ -30,7 +30,19 @@ public class Distrito {
 	@JsonIgnore
 	@OneToMany(mappedBy="distrito")
 	private List<Cliente> listaClientes;
+	@JsonIgnore
+	@OneToMany(mappedBy="distrito")
+	private List<Postulante> listaPostulantes;
 	
+	
+	public List<Postulante> getListaPostulantes() {
+		return listaPostulantes;
+	}
+
+	public void setListaPostulantes(List<Postulante> listaPostulantes) {
+		this.listaPostulantes = listaPostulantes;
+	}
+
 	public List<Cliente> getListaClientes() {
 		return listaClientes;
 	}

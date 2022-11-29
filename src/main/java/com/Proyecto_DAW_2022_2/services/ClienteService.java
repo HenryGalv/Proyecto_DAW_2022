@@ -25,4 +25,7 @@ public class ClienteService {
 	public Cliente buscar(Integer id) {
 		return repo.findById(id).orElse(null);
 	}
+	public List<Cliente> listarClientesPorApellido(String ape){
+		return repo.listAllAtCliente(ape);
+	}
 }

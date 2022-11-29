@@ -15,7 +15,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="tb_postulante")
-
 public class Postulante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +22,8 @@ public class Postulante {
 	private String nombre;
 	private String apellido;
 	private String correo;
-	private String  celular;
+	private String celular;
 	private String direccion;
-	private String fecha_nac;
 	private String experiencia;
 	private String cursos;
 	private String idioma;
@@ -44,6 +42,7 @@ public class Postulante {
 	//(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_dis")
 	private Distrito distrito;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -80,14 +79,20 @@ public class Postulante {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public void setFechaNac(Date fechaNac) {
-		this.fechaNac = fechaNac;
+	public String getExperiencia() {
+		return experiencia;
 	}
 	public void setExperiencia(String experiencia) {
 		this.experiencia = experiencia;
 	}
+	public String getCursos() {
+		return cursos;
+	}
 	public void setCursos(String cursos) {
 		this.cursos = cursos;
+	}
+	public String getIdioma() {
+		return idioma;
 	}
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
@@ -101,7 +106,9 @@ public class Postulante {
 	public Date getFechaNac() {
 		return fechaNac;
 	}
-
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
+	}
 	public Departamento getDepartamento() {
 		return departamento;
 	}
@@ -120,6 +127,5 @@ public class Postulante {
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
 	}
-	
-	
+
 }
