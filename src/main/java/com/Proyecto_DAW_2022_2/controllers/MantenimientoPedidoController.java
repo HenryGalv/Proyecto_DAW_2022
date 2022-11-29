@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Proyecto_DAW_2022_2.entity.Cliente;
 import com.Proyecto_DAW_2022_2.entity.DetallePedido;
+import com.Proyecto_DAW_2022_2.services.ClienteService;
 import com.Proyecto_DAW_2022_2.services.ProductoService;
 
 @Controller
@@ -21,11 +23,17 @@ public class MantenimientoPedidoController {
 	
 	@Autowired
 	private ProductoService servProducto;
-	
+	@Autowired
+	private ClienteService servCliente;
 	@RequestMapping("/Lista")
 	public String lista(Model model) {
 		model.addAttribute("productos",servProducto.listarProductos());
 		return "mantenimiento-pedidos";
+	}
+	@RequestMapping("/Registrar")
+	public String registrarPedido(Model model) {
+		model.addAttribute("productos",servProducto.listarProductos());
+		return "registro-pedido";
 	}
 
 	@RequestMapping("/adicionar")
@@ -60,6 +68,12 @@ public class MantenimientoPedidoController {
 			}
 		}
 		session.setAttribute("carrito", data);
+		return data;
+	}
+	@RequestMapping("/listarClientes")
+	@ResponseBody
+	public List<Cliente> listarClientes(@RequestParam("apellido") String ape){
+		List<Cliente> data = servCliente.listarClientesPorApellido(ape + "%");
 		return data;
 	}
 }

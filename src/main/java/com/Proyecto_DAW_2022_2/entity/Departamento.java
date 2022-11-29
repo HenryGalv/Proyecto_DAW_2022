@@ -24,6 +24,30 @@ public class Departamento {
 	@JsonIgnore
 	@OneToMany(mappedBy="departamento")
 	private List<Usuario> listaUsuarios;
+	@JsonIgnore
+	@OneToMany(mappedBy="departamento")
+	private List<Cliente> listaClientes;
+	@JsonIgnore
+	@OneToMany(mappedBy="departamento")
+	private List<Postulante> listaPostulantes;
+	
+	
+	public List<Postulante> getListaPostulantes() {
+		return listaPostulantes;
+	}
+
+	public void setListaPostulantes(List<Postulante> listaPostulantes) {
+		this.listaPostulantes = listaPostulantes;
+	}
+
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
