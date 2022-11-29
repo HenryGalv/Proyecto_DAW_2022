@@ -24,6 +24,19 @@ public class Departamento {
 	@JsonIgnore
 	@OneToMany(mappedBy="departamento")
 	private List<Usuario> listaUsuarios;
+	@JsonIgnore
+	@OneToMany(mappedBy="departamento")
+	private List<Cliente> listaClientes;
+	
+	
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
