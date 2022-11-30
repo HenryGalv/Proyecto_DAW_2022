@@ -185,10 +185,6 @@ create table tb_enlace(
 insert into tb_enlace values (null,"Producto","/Productos/Lista");
 insert into tb_enlace values (null,"Usuarios","/Usuarios/Lista");
 insert into tb_enlace values (null,"Categorias y Marcas","/CategoriasMarcas/Lista");
-insert into tb_enlace values (null,"Clientes","/Clientes/Lista");
-insert into tb_enlace values (null,"Reclamos","/Reclamos/Lista");
-insert into tb_enlace values (null,"Postulantes","/Postulantes/Lista");
-insert into tb_enlace values (null,"Pedidos","/Pedidos/Lista");
 --
 create table tb_rol_enlace (
   idrol int not null,
@@ -216,7 +212,7 @@ create table tb_cliente(
 	id_dis int references tb_distrito(id)
 );
 --
-insert into tb_cliente values (null,'Henry','Galvez','henry@gmail.com',993124712,null,null,1,1,1,1);
+insert into tb_cliente values (null,'Henry','Galvez','henry@gmail.com',null,null,null,1,1,1,1);
 --
 create table tb_postulante(
 	id int auto_increment primary key,
@@ -300,10 +296,11 @@ create table tb_detalle_pedido(
     cantidad int,
 	precio_uni double,
     descuento double,
+    estado char(1),
     id_ped int references tb_pedido(id),
 	id_pro int references tb_producto(id)
 );
---	
+--
 insert into tb_detalle_pedido values(null,12,1500,10,1,1,1);
 --
 ALTER TABLE tb_usuario
@@ -313,4 +310,4 @@ modify correo varchar(255) unique;
 use Proyecto_DAW_BD;
 select*from tb_usuario;
 /*******************************/
--- drop database proyecto_daw_bd;
+drop database proyecto_daw_bd;
