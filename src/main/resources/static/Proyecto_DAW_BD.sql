@@ -185,6 +185,10 @@ create table tb_enlace(
 insert into tb_enlace values (null,"Producto","/Productos/Lista");
 insert into tb_enlace values (null,"Usuarios","/Usuarios/Lista");
 insert into tb_enlace values (null,"Categorias y Marcas","/CategoriasMarcas/Lista");
+insert into tb_enlace values (null,"Clientes","/Clientes/Lista");
+insert into tb_enlace values (null,"Reclamos","/Reclamos/Lista");
+insert into tb_enlace values (null,"Postulantes","/Postulantes/Lista");
+insert into tb_enlace values (null,"Pedidos","/Pedidos/Lista");
 --
 create table tb_rol_enlace (
   idrol int not null,
@@ -314,4 +318,4 @@ modify correo varchar(255) unique;
 use Proyecto_DAW_BD;
 select*from tb_usuario;
 /*******************************/
-drop database proyecto_daw_bd;
+/*drop database proyecto_daw_bd;*/
