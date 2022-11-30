@@ -201,6 +201,10 @@ create table tb_rol_enlace (
 insert into tb_rol_enlace values (1,1);
 insert into tb_rol_enlace values (1,2);
 insert into tb_rol_enlace values (1,3);
+insert into tb_rol_enlace values (1,4);
+insert into tb_rol_enlace values (1,5);
+insert into tb_rol_enlace values (1,6);
+insert into tb_rol_enlace values (1,7);
 --
 create table tb_cliente(
 	id int auto_increment primary key,
