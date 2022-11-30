@@ -1,6 +1,7 @@
 package com.Proyecto_DAW_2022_2.controllers;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +27,12 @@ public class MantenimientoReclamoController {
 	@RequestMapping("/Lista")
 	public String lista(Model model) {
 		
-		model.addAttribute("reclamo",servReclamo.listarReclamo());
-		model.addAttribute("clinte",serviceCliente.listarClientes());
-		return "mantenimiento-reclamo";
+		model.addAttribute("reclamos",servReclamo.listarReclamo());
+		model.addAttribute("clientes",serviceCliente.listarClientes());
+		return "mantenimiento-reclamos";
 		}
 	
-	@RequestMapping("/reclamo")
+	@RequestMapping("/buscar")
 	@ResponseBody
 	public Reclamo buscar(@RequestParam("id") int id) {
 		Reclamo bean=servReclamo.buscar(id);
@@ -40,7 +41,7 @@ public class MantenimientoReclamoController {
 	
 	@RequestMapping("/grabar")
 	public String grabar(@RequestParam("id") int id,
-			            @RequestParam("fecha") Date fecha,
+			            @RequestParam("fecha") String fecha,
 						@RequestParam("descripcion") String descripcion,
 						@RequestParam("cliente") int idcli,
 						@RequestParam("estado") int estado,
@@ -49,20 +50,17 @@ public class MantenimientoReclamoController {
 		try {
 			Reclamo bean = new Reclamo();
 			bean.setId(id);
-			
-			bean.setDescripcion(descripcion);
-			
-			bean.setEstado(estado);
-			
+			bean.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(fecha));
+			bean.setDescripcion(descripcion);			
+			bean.setEstado(estado);			
 			Cliente cli = new Cliente();
 			cli.setId(idcli);
-			bean.setCliente(cli);
-			
+			bean.setCliente(cli);			
 			servReclamo.grabar(bean);
 			if(id==0)
 				redirect.addFlashAttribute("MENSAJE","Reclamo registrada");
 			else
-				redirect.addFlashAttribute("MENSAJE","Reclamo actualizada");
+				redirect.addFlashAttribute("MENSAJE","Reclamo actualizado");
 		} catch (Exception e) {
 			redirect.addFlashAttribute("MENSAJE","Error en la grabación");
 			e.printStackTrace();

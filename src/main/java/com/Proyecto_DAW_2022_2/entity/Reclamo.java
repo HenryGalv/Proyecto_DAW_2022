@@ -24,11 +24,10 @@ public class Reclamo {
 	@Column(name="fecha")
 	private Date fecha;
 	private String descripcion;
-	private int estado;
-	
+	private int estado;	
 	@ManyToOne
 	@JoinColumn(name = "id_cli")
-	private Cliente  cliente;
+	private Cliente cli;
 
 	public Integer getId() {
 		return id;
@@ -63,11 +62,11 @@ public class Reclamo {
 	}
 
 	public Cliente getCliente() {
-		return cliente;
+		return cli;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCliente(Cliente cli) {
+		this.cli = cli;
 	}
 	
 	

@@ -31,11 +31,7 @@ public class Cliente {
 	private int estado;
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nac")
-	private Date fechaNac;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
-	private List<Cliente> listaClientes;
+	private Date fechaNac;	
 	@ManyToOne
 	@JoinColumn(name = "id_dep")
 	private Departamento departamento;

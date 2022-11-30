@@ -19,10 +19,8 @@
 				<div class="offcanvas bg-dark offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
 					aria-labelledby="offcanvasDarkNavbarLabel">
 					<div class="offcanvas-header">
-						<form th:action="@{/logout}" method="post">
-							<input type="submit" class="btn btn-danger" value="Cerrar Sesion"/>
-						</form>						
-						<h5 class="offcanvas-title text-white" id="offcanvasDarkNavbarLabel">"NOMBRE USUARIO"</h5>
+					
+						<h5 class="offcanvas-title text-white d-flex flex-column gap-1 justify-content-center aling-items-center" id="offcanvasDarkNavbarLabel"><p class="h3 text-center" th:text="${fullName}"></p><p class="text-light h6 text-center" th:text="${rol}"></p></h5>
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
 							aria-label="Close"></button>
 					</div>
@@ -40,11 +38,10 @@
 									<li th:each="bean:${session.ENLACES}">
 										<a class="dropdown-item" th:text="${bean.descripcion}" th:href="${bean.ruta}"></a>
 										<hr class="dropdown-divider">
-									</li>																
-									<li><a class="dropdown-item" href="#">Clientes</a></li>
+									</li>																									
 								</ul>
 							</li>
-							<li class="nav-item dropdown">
+							<!--<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 									aria-expanded="false">
 									REPORTES
@@ -60,9 +57,13 @@
 									</li>
 									<li><a class="dropdown-item" href="#">Clientes</a></li>
 								</ul>
-							</li>
+							</li>-->
 						</ul>
+						
 					</div>
+					<form th:action="@{/logout}" method="post" class="mx-auto mb-4">
+							<input type="submit" class="btn btn-danger" value="Cerrar Sesion"/>
+					</form>	
 				</div>
 			</div>
 		</nav>

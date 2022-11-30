@@ -21,6 +21,7 @@ public class Marca {
 	@JsonIgnore
 	@OneToMany(mappedBy="marca")
 	private List<Producto> listaProductos;
+	
 	public Integer getId() {
 		return id;
 	}

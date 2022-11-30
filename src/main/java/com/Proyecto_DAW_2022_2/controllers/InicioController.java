@@ -36,6 +36,8 @@ public class InicioController {
 		String vLogin = auth.getName();
 		Usuario u = servUsuario.loginUsuario(vLogin);
 		List<Enlace> lista = servUsuario.enlacesDelUsuario(u.getRol().getId());
+		model.addAttribute("fullName", u.getNombre() +' '+ u.getApellido());
+		model.addAttribute("rol", u.getRol().getNombre());
 		model.addAttribute("ENLACES",lista);
 		
 		List<Usuario> usuarios = servUsuario.listarUsuarios();
