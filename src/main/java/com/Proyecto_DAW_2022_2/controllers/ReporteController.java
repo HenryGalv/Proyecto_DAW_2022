@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.Proyecto_DAW_2022_2.entity.Categoria;
 import com.Proyecto_DAW_2022_2.entity.Cliente;
 import com.Proyecto_DAW_2022_2.entity.Marca;
+import com.Proyecto_DAW_2022_2.entity.Pedido;
 import com.Proyecto_DAW_2022_2.entity.Postulante;
 import com.Proyecto_DAW_2022_2.entity.Producto;
 import com.Proyecto_DAW_2022_2.entity.Reclamo;
@@ -22,6 +23,7 @@ import com.Proyecto_DAW_2022_2.entity.Usuario;
 import com.Proyecto_DAW_2022_2.services.CategoriaService;
 import com.Proyecto_DAW_2022_2.services.ClienteService;
 import com.Proyecto_DAW_2022_2.services.MarcaService;
+import com.Proyecto_DAW_2022_2.services.PedidoService;
 import com.Proyecto_DAW_2022_2.services.PostulanteService;
 import com.Proyecto_DAW_2022_2.services.ProductoService;
 import com.Proyecto_DAW_2022_2.services.ReclamoService;
@@ -49,6 +51,8 @@ public class ReporteController {
 	private PostulanteService servPostulante;
 	@Autowired
 	private ReclamoService servReclamo;
+	@Autowired
+	private PedidoService servPedido;
 	
 	@RequestMapping("/cliente")
 	public void inicio (HttpServletResponse response) {
@@ -199,6 +203,25 @@ public class ReporteController {
 			e.printStackTrace();
 		}
 	}
-	
-
+	@RequestMapping("/pedidos")
+	public void inicio8 (HttpServletResponse response) {
+		try {
+			List<Pedido> data = servPedido.listarPedidos() ;
+			//
+			File file= ResourceUtils.getFile("classpath:reporte_pedidos.jrxml");
+			//
+			JRBeanCollectionDataSource info= new JRBeanCollectionDataSource(data);
+			//
+			JasperPrint print= Libreria.generarReporte(file, info);
+			//
+			response.setContentType("application/pdf");	
+			//
+			OutputStream salida= response.getOutputStream();
+			//
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
