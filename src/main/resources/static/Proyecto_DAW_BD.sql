@@ -308,6 +308,7 @@ create table tb_detalle_pedido(
 );
 --
 insert into tb_detalle_pedido values(null,12,1500,1,1);
+
 --
 ALTER TABLE tb_usuario
 modify correo varchar(255) unique;

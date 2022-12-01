@@ -49,6 +49,14 @@ public class MantenimientoPedidoController {
 		model.addAttribute("productos",servProducto.listarProductos());
 		return "registro-pedido";
 	}
+	@RequestMapping("/Editar")
+	public String editarPedido(Model model,Authentication auth) {
+		String vLogin = auth.getName();
+		Usuario u = servUsuario.loginUsuario(vLogin);
+		model.addAttribute("USUARIO",u);
+		model.addAttribute("productos",servProducto.listarProductos());
+		return "editar-pedido";
+	}
 	@RequestMapping("/grabar")
 	public String grabar(@RequestParam("id") int id, 
 							@RequestParam("fechaActual")String fechaActual,

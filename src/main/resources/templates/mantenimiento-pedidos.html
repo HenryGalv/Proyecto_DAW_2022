@@ -146,6 +146,20 @@
 				"timeOut": "2000",
 				"positionClass ": " toast-top-right ",
 			});
+			$(document).on("click", ".btn-editar", function () {
+			let id = $(this).parents("tr").find("td")[0].innerHTML;
+			$.get("buscar?id=" + id, function (response) {
+				console.log(response);
+				$("#idId").val(response.id);
+				$("#idNombre").val(response.nombre);
+				$("#idDescripcion").val(response.descripcion);
+				$("#idPrecio").val(response.precio);
+				$("#idStock").val(response.stock);
+				$("#idEstado").val(response.estado);
+				$("#idCategoria").val(response.categoria.id);
+				$("#idMarca").val(response.marca.id);
+			})
+		});
 	</script>
 </body>
 
