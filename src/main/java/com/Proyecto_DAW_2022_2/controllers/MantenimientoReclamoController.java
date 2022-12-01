@@ -1,20 +1,32 @@
 package com.Proyecto_DAW_2022_2.controllers;
 
+import java.io.File;
+import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Proyecto_DAW_2022_2.entity.Cliente;
+import com.Proyecto_DAW_2022_2.entity.Producto;
 import com.Proyecto_DAW_2022_2.entity.Reclamo;
 import com.Proyecto_DAW_2022_2.services.ClienteService;
 import com.Proyecto_DAW_2022_2.services.ReclamoService;
+import com.Proyecto_DAW_2022_2.utils.Libreria;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/Reclamos")
@@ -78,6 +90,20 @@ public class MantenimientoReclamoController {
 			e.printStackTrace();
 		}
 		return "redirect:/Reclamos/Lista";
+	}
+	@RequestMapping("/reporte")
+	public void reporte(HttpServletResponse response) {
+		try {
+			List<Reclamo> data = servReclamo.listarReclamo();
+			File file=ResourceUtils.getFile("classpath:reporte_reclamos.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -1,9 +1,12 @@
 package com.Proyecto_DAW_2022_2.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,26 +15,27 @@ public class DetallePedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private int cantidad;
-	private String nombre;
+	@Column(name="precio_uni")
 	private double precio;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+	private int cantidad;
 	public int getCantidad() {
 		return cantidad;
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public String getNombre() {
-		return nombre;
+	@ManyToOne
+	@JoinColumn(name = "id_pro")
+	private Producto producto;
+	@ManyToOne
+	@JoinColumn(name = "id_ped")
+	private Pedido pedido;
+	public Integer getId() {
+		return id;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public double getPrecio() {
 		return precio;
@@ -39,6 +43,19 @@ public class DetallePedido {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	public Producto getProducto() {
+		return producto;
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	
 }
 
 

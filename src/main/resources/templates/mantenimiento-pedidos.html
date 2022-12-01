@@ -79,23 +79,21 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Nombre</th>
-						<th>Precio</th>
-						<th>Stock</th>
-						<th>Categoria</th>
-						<th>Marca</th>
+						<th>Fecha</th>
+						<th>Entrega</th>
+						<th>Usuario</th>
+						<th>Cliente</th>						
 						<th>Estado</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="row:${productos}">
+					<tr th:each="row:${pedidos}">
 						<td th:text="${row.id}"></td>
-						<td th:text="${row.nombre}"></td>
-						<td th:text="${row.precio}"></td>
-						<td th:text="${row.stock}"></td>
-						<td th:text="${row.categoria.nombre}"></td>
-						<td th:text="${row.marca.nombre}"></td>
+						<td th:text="${row.fecha}"></td>
+						<td th:text="${row.fechaEntrega}"></td>
+						<td th:text="${row.usuario.nombre}"></td>
+						<td th:text="${row.cliente.nombre}"></td>						
 						<td th:switch="${row.estado}">
 							<p th:case="1" class="bg-success text-center m-0  py-1 rounded-pill">Activo</p>
 							<p th:case="0" class="bg-danger text-center m-0   py-1 rounded-pill">Desactivo</p>

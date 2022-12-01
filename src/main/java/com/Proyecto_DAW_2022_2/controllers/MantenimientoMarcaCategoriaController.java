@@ -1,8 +1,15 @@
 package com.Proyecto_DAW_2022_2.controllers;
 
+import java.io.File;
+import java.io.OutputStream;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,8 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Proyecto_DAW_2022_2.entity.Categoria;
 import com.Proyecto_DAW_2022_2.entity.Marca;
+import com.Proyecto_DAW_2022_2.entity.Producto;
 import com.Proyecto_DAW_2022_2.services.CategoriaService;
 import com.Proyecto_DAW_2022_2.services.MarcaService;
+import com.Proyecto_DAW_2022_2.utils.Libreria;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/CategoriasMarcas")
@@ -98,5 +111,33 @@ public class MantenimientoMarcaCategoriaController {
 			e.printStackTrace();
 		}
 		return "redirect:/CategoriasMarcas/Lista";
+	}
+	@RequestMapping("/reporteCategorias")
+	public void reporteCategoria(HttpServletResponse response) {
+		try {
+			List<Categoria> data = servCategoria.listarCategorias();
+			File file=ResourceUtils.getFile("classpath:reporte_categorias.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping("/reporteMarcas")
+	public void reporteMarca(HttpServletResponse response) {
+		try {
+			List<Marca> data = servMarca.listarMarcas();
+			File file=ResourceUtils.getFile("classpath:reporte_marcas.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

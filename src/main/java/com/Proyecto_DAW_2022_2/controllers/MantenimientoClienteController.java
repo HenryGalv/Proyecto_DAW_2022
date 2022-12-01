@@ -126,4 +126,18 @@ public class MantenimientoClienteController {
 		List<Distrito> data=servCiudad.listarDistritoPorIdCiudad(id);
 		return data;
 	}
+	@RequestMapping("/reporte")
+	public void reporteMarca(HttpServletResponse response) {
+		try {
+			List<Cliente> data = servCliente.listarClientes();
+			File file=ResourceUtils.getFile("classpath:reporte_clientes.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

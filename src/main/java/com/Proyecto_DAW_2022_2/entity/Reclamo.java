@@ -27,7 +27,7 @@ public class Reclamo {
 	private int estado;	
 	@ManyToOne
 	@JoinColumn(name = "id_cli")
-	private Cliente cli;
+	private Cliente cliente;
 
 	public Integer getId() {
 		return id;
@@ -62,11 +62,11 @@ public class Reclamo {
 	}
 
 	public Cliente getCliente() {
-		return cli;
+		return cliente;
 	}
 
-	public void setCliente(Cliente cli) {
-		this.cli = cli;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

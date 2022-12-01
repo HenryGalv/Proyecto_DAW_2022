@@ -1,12 +1,17 @@
 package com.Proyecto_DAW_2022_2.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_producto")
@@ -19,6 +24,18 @@ public class Producto {
 	private double precio;
 	private int stock;
 	private int estado;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="producto")
+	private List<DetallePedido> listaDetallePedido;
+	
+	
+	public List<DetallePedido> getListaDetallePedido() {
+		return listaDetallePedido;
+	}
+	public void setListaDetallePedido(List<DetallePedido> listaDetallePedido) {
+		this.listaDetallePedido = listaDetallePedido;
+	}
 	@ManyToOne
 	@JoinColumn(name = "id_cat")
 	private Categoria categoria;

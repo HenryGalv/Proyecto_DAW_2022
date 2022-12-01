@@ -20,10 +20,11 @@
 					aria-labelledby="offcanvasDarkNavbarLabel">
 					<div class="offcanvas-header">
 					
-						<h5 class="offcanvas-title text-white d-flex flex-column gap-1 justify-content-center aling-items-center col-11" id="offcanvasDarkNavbarLabel"><p class="h3 text-center" th:text="${session.USUARIO.nombre}"></p><p class="text-light h6 text-center" th:text="${session.USUARIO.rol.nombre}"></p></h5>
+						<h5 class="offcanvas-title text-white d-flex flex-column gap-1 justify-content-center aling-items-center col-11" id="offcanvasDarkNavbarLabel"><p class="h3 text-center"><em th:text="${session.USUARIO.nombre}" ></em> <em th:text="${session.USUARIO.apellido}" ></em></p><p class="text-light h6 text-center" th:text="${session.USUARIO.rol.nombre}"></p></h5>
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
 							aria-label="Close"></button>
 					</div>
+					<hr class="bg-white"/>
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 							<li class="nav-item">

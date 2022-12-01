@@ -303,13 +303,11 @@ create table tb_detalle_pedido(
 	id int auto_increment primary key,
     cantidad int,
 	precio_uni double,
-    descuento double,
-    estado char(1),
     id_ped int references tb_pedido(id),
 	id_pro int references tb_producto(id)
 );
 --
-insert into tb_detalle_pedido values(null,12,1500,10,1,1,1);
+insert into tb_detalle_pedido values(null,12,1500,1,1);
 --
 ALTER TABLE tb_usuario
 modify correo varchar(255) unique;

@@ -1,8 +1,8 @@
 package com.Proyecto_DAW_2022_2.entity;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_usuario")
@@ -28,6 +31,16 @@ public class Usuario {
 	private String  dni;
 	private String direccion;
 	private int estado;
+	@JsonIgnore
+	@OneToMany(mappedBy="usuario")
+	private List<Pedido> listaPedido;
+	
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
+	}
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
+	}
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nac")
 	private Date fechaNac;

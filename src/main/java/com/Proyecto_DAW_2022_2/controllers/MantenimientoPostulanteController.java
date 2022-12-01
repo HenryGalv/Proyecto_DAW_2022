@@ -1,12 +1,17 @@
 package com.Proyecto_DAW_2022_2.controllers;
 
+import java.io.File;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,11 +21,17 @@ import com.Proyecto_DAW_2022_2.entity.Ciudad;
 import com.Proyecto_DAW_2022_2.entity.Departamento;
 import com.Proyecto_DAW_2022_2.entity.Distrito;
 import com.Proyecto_DAW_2022_2.entity.Postulante;
+import com.Proyecto_DAW_2022_2.entity.Reclamo;
 import com.Proyecto_DAW_2022_2.entity.Rol;
 import com.Proyecto_DAW_2022_2.entity.TipoUsuario;
 import com.Proyecto_DAW_2022_2.services.CiudadService;
 import com.Proyecto_DAW_2022_2.services.DepartamentoService;
 import com.Proyecto_DAW_2022_2.services.PostulanteService;
+import com.Proyecto_DAW_2022_2.utils.Libreria;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/Postulantes")
@@ -122,5 +133,19 @@ public class MantenimientoPostulanteController {
 	public List<Distrito> buscarPorCiudad(@RequestParam("id") int id) {
 		List<Distrito> data=servCiudad.listarDistritoPorIdCiudad(id);
 		return data;
+	}
+	@RequestMapping("/reporte")
+	public void reporte(HttpServletResponse response) {
+		try {
+			List<Postulante> data = servPostulante.listarPostulantes();
+			File file=ResourceUtils.getFile("classpath:reporte_postulantes.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

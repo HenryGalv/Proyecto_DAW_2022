@@ -29,6 +29,24 @@ public class Cliente {
 	private String  celular;
 	private String direccion;
 	private int estado;
+	@JsonIgnore
+	@OneToMany(mappedBy="cliente")
+	private List<Reclamo> listaReclamo;
+	@JsonIgnore
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> listaPedido;
+	public List<Reclamo> getListaReclamo() {
+		return listaReclamo;
+	}
+	public void setListaReclamo(List<Reclamo> listaReclamo) {
+		this.listaReclamo = listaReclamo;
+	}
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
+	}
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
+	}
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nac")
 	private Date fechaNac;	

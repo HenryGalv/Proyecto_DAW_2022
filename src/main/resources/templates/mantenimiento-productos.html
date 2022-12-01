@@ -63,6 +63,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<button type="button" class="btn btn-warning" id="btn-reporte">Reporte</button>
 		</section>
 		<!-- Modal PARA REGISTRAR y Editar-->
 		<div class="modal fade" id="modalMantenimiento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -312,6 +313,12 @@
 					//alertify.error('Cancel');
 					console.log("cancelo Operacion")
 				});
+		})
+		$(document).on("click","#btn-reporte",function(){
+			let cod;
+			cod=$("#idProyecto").val();
+			window.open("http://localhost:8091/Productos/reporte","_black")
+						
 		})
 
 	</script>
