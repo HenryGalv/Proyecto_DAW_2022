@@ -110,6 +110,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<button type="button" class="btn btn-warning" id="btn-reporte">Reporte</button>
 		</section>
 	</main>
 	<!-- JS principal -->
@@ -159,7 +160,12 @@
 				$("#idCategoria").val(response.categoria.id);
 				$("#idMarca").val(response.marca.id);
 			})
-		});
+		});		
+	</script>
+	<script>
+	$(document).on("click","#btn-reporte",function(){
+			window.open("http://localhost:8091/Pedidos/reporte","_black")						
+		})
 	</script>
 </body>
 

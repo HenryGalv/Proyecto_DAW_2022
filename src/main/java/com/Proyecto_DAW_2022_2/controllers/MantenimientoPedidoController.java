@@ -1,15 +1,19 @@
 package com.Proyecto_DAW_2022_2.controllers;
 
+import java.io.File;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +28,11 @@ import com.Proyecto_DAW_2022_2.services.ClienteService;
 import com.Proyecto_DAW_2022_2.services.PedidoService;
 import com.Proyecto_DAW_2022_2.services.ProductoService;
 import com.Proyecto_DAW_2022_2.services.UsuarioService;
+import com.Proyecto_DAW_2022_2.utils.Libreria;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/Pedidos")
@@ -142,5 +151,19 @@ public class MantenimientoPedidoController {
 	public List<Cliente> listarClientes(@RequestParam("apellido") String ape){
 		List<Cliente> data = servCliente.listarClientesPorApellido(ape + "%");
 		return data;
+	}
+	@RequestMapping("/reporte")
+	public void reporte(HttpServletResponse response) {
+		try {
+			List<Pedido> data = servPedido.listarPedidos();
+			File file=ResourceUtils.getFile("classpath:reporte_pedidos.jrxml");
+			JRBeanCollectionDataSource info=new JRBeanCollectionDataSource(data);
+			JasperPrint print=Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
