@@ -198,6 +198,7 @@ create table tb_rol_enlace (
   CONSTRAINT fk25 FOREIGN KEY (idenlace) REFERENCES tb_enlace (id)
 );
 -- drop table tb_rol_enlace;
+-- ADMINISTRADOR
 insert into tb_rol_enlace values (1,1);
 insert into tb_rol_enlace values (1,2);
 insert into tb_rol_enlace values (1,3);
@@ -205,6 +206,16 @@ insert into tb_rol_enlace values (1,4);
 insert into tb_rol_enlace values (1,5);
 insert into tb_rol_enlace values (1,6);
 insert into tb_rol_enlace values (1,7);
+-- RRHH
+insert into tb_rol_enlace values (2,6);
+insert into tb_rol_enlace values (2,2);
+insert into tb_rol_enlace values (2,5);
+insert into tb_rol_enlace values (2,4);
+-- VENTAS
+insert into tb_rol_enlace values (3,1);
+insert into tb_rol_enlace values (3,3);
+insert into tb_rol_enlace values (2,4);
+insert into tb_rol_enlace values (3,7);
 --
 create table tb_cliente(
 	id int auto_increment primary key,
